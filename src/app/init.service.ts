@@ -12,7 +12,7 @@ export class InitService {
   }
 
   init() {
-    this.http.get("/src/assets/config/json")
-      .pipe(tap((config) => this.config = config));
+    return this.http.get("/assets/config.json")
+      .pipe(tap((config) => (this.config = config)));
   }
 }

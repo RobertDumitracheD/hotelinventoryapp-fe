@@ -10,10 +10,18 @@ import {EmployeeComponent} from './employee/employee.component';
 import {API_CONFIG, API_SERVICE_CONFIG} from './AppConfig/appconfig.service';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {InitService} from "./init.service";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AppNavComponent } from './app-nav/app-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 
 function initFactory(initService: InitService) {
-  return ()=> initService.init();
+  return () => initService.init();
 }
 
 @NgModule({
@@ -23,12 +31,20 @@ function initFactory(initService: InitService) {
     RoomsListComponent,
     HeaderComponent,
     ContainerComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    AppNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     {
