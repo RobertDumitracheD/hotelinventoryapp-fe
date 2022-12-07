@@ -1,0 +1,45 @@
+<!--{{room | json}}-->
+
+<div *ngIf="successMessage !== ''">{{successMessage}}</div>
+
+<form (ngSubmit)="addRoom()">
+
+  <div class="form-group">
+    <input #roomroomType="ngModel"
+           required
+           minlength="5"
+           maxlength="50"
+           class="form-control"
+           type="text"
+           name="roomType"
+           placeholder="Room Type"
+           [(ngModel)]="room.roomType">
+    <div class="alert alert-danger" *ngIf="roomroomType.errors?.['minlength']">Room type must be 5 characters min</div>
+  </div>
+
+  <div class="form-group">
+    <input #roomPrice="ngModel" min="100" max="999999" class="form-control" type="number" name="roomPrice"
+                                 placeholder="Room Price" [(ngModel)]="room.roomPrice">
+    <div class="alert alert-danger" *ngIf="roomPrice.errors?.['min']">Room type must be greater then 100</div>
+  </div>
+
+  <div class="form-group">
+    <input #roomAmenities="ngModel" minlength="5" maxlength="50" class="form-control" type="text" name="amenities"
+                                 placeholder="Amenities" [(ngModel)]="room.amenities">
+    <div class="alert alert-danger" *ngIf="roomAmenities.errors?.['minlength']">Room amenities must be 5 characters min</div>
+  </div>
+
+  <div class="form-group">
+    <input #roomRating="ngModel" min="1" max="5" class="form-control" type="number" name="rating" placeholder="Rating"
+                                 [(ngModel)]="room.rating">
+    <div class="alert alert-danger" *ngIf="roomRating.errors?.['min']">Room Rating must be at least 1</div>
+  </div>
+
+  <div>
+    <button style="padding: 10px; margin: 10px;" class="btn btn-primary" type="submit"
+            [disabled]="!room.roomType || !room.roomPrice || !room.amenities || !room.rating">Submit
+    </button>
+  </div>
+
+
+</form>

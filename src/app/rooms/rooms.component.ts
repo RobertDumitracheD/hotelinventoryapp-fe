@@ -79,28 +79,7 @@ export class RoomsComponent implements OnInit, AfterViewInit {
     this.selectedRoom = room;
   }
 
-  addRoom() {
-    let newRoom: RoomsList = {
-      roomType: "penthouse",
-      roomPrice: 4500,
-      amenities: "all",
-      rating: 4.5
-    };
-
-    this.roomsService.addRoom(newRoom).subscribe(rooms => {
-      this.roomsList = rooms;
-    });
-
-  }
-
-  updateRoom() {
-    let newRoom: RoomsList = {
-      roomType: "studio",
-      roomPrice: 5500,
-      amenities: "tv",
-      rating: 4.5
-    };
-    let roomNumber = 4;
+  updateRoom(newRoom:RoomsList, roomNumber:number) {
     this.roomsService.updateRoom(newRoom, roomNumber).subscribe(rooms => {
       this.roomsList = rooms;
     });

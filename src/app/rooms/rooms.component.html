@@ -1,8 +1,6 @@
-<hinv-header></hinv-header>
-<div>Welcome to {{hotelName}}</div>
-<div>Total rooms {{numberOfRooms}}</div>
+
+
 <!-- {{rooms?.availableRooms ?? 'No rooms available'}} -->
-<div [innerText]="numberOfRooms"></div>
 <div *ngIf="selectedRoom">{{selectedRoom | json}}</div>
 
 <h1>
@@ -10,6 +8,16 @@
   {{error$ | async}}
 
 </h1>
+<div style="padding: 10px; margin: 10px;">
+  <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="toogle()">Toogle</button>
+  <!--    <button style="padding: 10px; margin: 10px;" class="btn btn-primary" routerLink="add-room">Add room</button>-->
+<!--  <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="updateRoom()">Update room</button>-->
+</div>
+
+<div>
+  <input id="getRoomNumber" type="text">
+  <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="deleteRoom()">Delete room</button>
+</div>
 
 <h1>
   Total number of rooms is {{roomsCount$ |async}}
@@ -21,16 +29,9 @@
 
 </div>
 
-<div style="padding: 10px; margin: 10px;">
-    <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="toogle()">Toogle</button>
-    <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="addRoom()">Add room</button>
-    <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="updateRoom()">Update room</button>
-</div>
 
 
 
-<div>
-  <input id="getRoomNumber" type="text">
-  <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="deleteRoom()">Delete room</button>
-</div>
+
+
 

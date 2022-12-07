@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-app-nav',
+  selector: 'hinv-app-nav',
   templateUrl: './app-nav.component.html',
   styleUrls: ['./app-nav.component.css']
 })
