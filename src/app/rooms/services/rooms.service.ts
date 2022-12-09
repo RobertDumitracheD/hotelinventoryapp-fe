@@ -37,4 +37,8 @@ export class RoomsService {
   deleteRoom(roomNumber:number) {
     return this.httpClient.delete<RoomsList[]>(this.environment+"/all/deleteRoom/"+ roomNumber);
   }
+
+  loginAdmin(username:string,password:string) {
+    return this.httpClient.get<string>(this.environment+"/all/login/"+username+"/"+password);
+  }
 }

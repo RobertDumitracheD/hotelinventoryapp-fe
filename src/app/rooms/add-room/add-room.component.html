@@ -2,7 +2,7 @@
 
 <div *ngIf="successMessage !== ''">{{successMessage}}</div>
 
-<form (ngSubmit)="addRoom()">
+<form #roomForm="ngForm" (ngSubmit)="addRoom(roomForm)">
 
   <div class="form-group">
     <input #roomroomType="ngModel"
@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <input #roomPrice="ngModel" min="100" max="999999" class="form-control" type="number" name="roomPrice"
-                                 placeholder="Room Price" [(ngModel)]="room.roomPrice">
+                                 placeholder="Room Price" onfocus="this.type='number';" [(ngModel)]="room.roomPrice">
     <div class="alert alert-danger" *ngIf="roomPrice.errors?.['min']">Room type must be greater then 100</div>
   </div>
 

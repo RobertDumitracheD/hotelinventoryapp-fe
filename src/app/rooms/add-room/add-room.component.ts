@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {RoomsService} from "../services/rooms.service";
 import {RoomsList} from "../rooms";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'hinv-add-room',
@@ -19,8 +20,11 @@ export class AddRoomComponent {
   constructor(private roomsService:RoomsService) {
   }
 
-  addRoom(){
-    this.roomsService.addRoom(this.room).subscribe(data=>this.successMessage="Room Added!");
+  addRoom(roomForm:NgForm){
+    this.roomsService.addRoom(this.room).subscribe((data)=>{
+      this.successMessage="Room Added!"
+      roomForm.reset();
+    });
   }
 
 }
