@@ -2,9 +2,6 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {RoomsComponent} from './rooms/rooms.component';
-import {RoomsListComponent} from './rooms/rooms-list/rooms-list.component';
-import {HeaderComponent} from './header/header.component';
 import {ContainerComponent} from './container/container.component';
 import {EmployeeComponent} from './employee/employee.component';
 import {API_CONFIG, API_SERVICE_CONFIG} from './AppConfig/appconfig.service';
@@ -19,13 +16,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.component';
-import { AddRoomComponent } from './rooms/add-room/add-room.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailValidator/emailvalidator.directive';
-import {RoomsModule} from "./rooms/rooms.module";
+import {RouteConfigtoken} from "./config/routeconfig.service";
 
 
 function initFactory(initService: InitService) {
@@ -54,13 +49,16 @@ function initFactory(initService: InitService) {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    FormsModule,
-    RoomsModule
+    FormsModule
   ],
   providers: [
     {
       provide: API_SERVICE_CONFIG,
       useValue: API_CONFIG
+    },
+    {
+      provide: RouteConfigtoken,
+      useValue: {title:"Home"}
     },
     {
       provide: APP_INITIALIZER,

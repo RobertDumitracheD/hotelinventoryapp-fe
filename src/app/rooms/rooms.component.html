@@ -4,10 +4,14 @@
 <div *ngIf="selectedRoom">{{selectedRoom | json}}</div>
 
 <h1>
-
   {{error$ | async}}
-
 </h1>
+
+<router-outlet></router-outlet>
+<div>
+  <button  style="padding: 10px; margin: 10px;" class="btn btn-primary" routerLink="add-room">Add Room</button>
+</div>
+
 <div style="padding: 10px; margin: 10px;">
   <button style="padding: 10px; margin: 10px;" class="btn btn-primary" (click)="toogle()">Toogle</button>
   <!--    <button style="padding: 10px; margin: 10px;" class="btn btn-primary" routerLink="add-room">Add room</button>-->

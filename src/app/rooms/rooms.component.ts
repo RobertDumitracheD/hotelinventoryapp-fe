@@ -5,6 +5,7 @@ import { AfterViewInit, Component, Inject, OnChanges, OnInit, SimpleChanges, Vie
 import { Room, RoomsList } from './rooms';
 import { API_SERVICE_CONFIG } from '../AppConfig/appconfig.service';
 import { catchError, map, Observable, of, Subject } from 'rxjs';
+import {ConfigService} from "../config/config.service";
 
 @Component({
   selector: 'hinv-rooms',
@@ -48,7 +49,7 @@ export class RoomsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(HeaderComponent) header!: HeaderComponent;
 
-  constructor(private roomsService: RoomsService, @Inject(API_SERVICE_CONFIG) private config: AppConfig) {
+  constructor(private roomsService: RoomsService, private configService: ConfigService,@Inject(API_SERVICE_CONFIG) private config: AppConfig) {
     console.log(config.apiEndPoint);
   }
   ngAfterViewInit(): void {

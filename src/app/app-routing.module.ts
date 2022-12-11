@@ -6,14 +6,17 @@ import {NotfoundComponent} from "./notfound/notfound.component";
 import {RoomsBookingComponent} from "./rooms/rooms-booking/rooms-booking.component";
 import {AddRoomComponent} from "./rooms/add-room/add-room.component";
 import {LoginComponent} from "./login/login.component";
+import {RoomsRoutingModule} from "./rooms/rooms-routing.module";
 
 const routes: Routes = [
   {path: 'employee', component: EmployeeComponent},
-  {path: 'rooms', component: RoomsComponent},
-  {path: 'rooms/:roomNumber', component: RoomsBookingComponent},
-  {path:'add-room',component:AddRoomComponent},
   {path:'login',component:LoginComponent},
+  {path:'rooms',
+    loadChildren: ()=> import('./rooms/rooms.module').then((m)=> m.RoomsModule),
+
+  },
   {path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
   {path: '**', component: NotfoundComponent}
 
 ];
