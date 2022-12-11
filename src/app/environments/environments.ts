@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiEndPoint: 'http://localhost:8080/hotelinventory'
+  apiEndPoint: 'http://localhost:8081/hotelinventory'
 };

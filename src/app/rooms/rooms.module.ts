@@ -9,7 +9,7 @@ import {AddRoomComponent} from "./add-room/add-room.component";
 import {FormsModule} from "@angular/forms";
 import {HeaderModule} from "../header/header.module";
 import {RouteConfigtoken} from "../config/routeconfig.service";
-import {ConfigService} from "../config/config.service";
+import {AuthService} from "../login/auth.service";
 
 
 @NgModule({
@@ -25,11 +25,17 @@ import {ConfigService} from "../config/config.service";
     FormsModule,
     HeaderModule
   ],
+  exports: [
+    AddRoomComponent
+  ],
   providers: [
     {
       provide: RouteConfigtoken,
-      useValue: {title:"Rooms"}
+      useValue: {title: "Rooms"}
     },
+    // {
+    //   provide: AuthService
+    // }
   ]
 })
 export class RoomsModule { }

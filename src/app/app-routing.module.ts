@@ -7,16 +7,33 @@ import {RoomsBookingComponent} from "./rooms/rooms-booking/rooms-booking.compone
 import {AddRoomComponent} from "./rooms/add-room/add-room.component";
 import {LoginComponent} from "./login/login.component";
 import {RoomsRoutingModule} from "./rooms/rooms-routing.module";
+import {LoginGuard} from "./guards/login.guard";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
-  {path: 'employee', component: EmployeeComponent},
-  {path:'login',component:LoginComponent},
-  {path:'rooms',
-    loadChildren: ()=> import('./rooms/rooms.module').then((m)=> m.RoomsModule),
 
+
+  {
+    path: 'home', component: HomeComponent, children: [
+      {
+        path: 'employee', component: EmployeeComponent, canActivate: [LoginGuard]
+      },
+      {
+        path: 'rooms',
+        loadChildren: () => import('./rooms/rooms.module').then((m) => m.RoomsModule), canActivate: [LoginGuard]
+      },
+      {
+        path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule), canActivate: [LoginGuard]
+      },
+      {
+        path: 'add-room', component:AddRoomComponent, canActivate: [LoginGuard]
+      },
+    ]
   },
+  {path: 'login', component: LoginComponent},
+
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
+
   {path: '**', component: NotfoundComponent}
 
 ];

@@ -8,11 +8,11 @@
     <input hinvHover #loginpassword="ngModel" class = "form-control"  [(ngModel)]="password" placeholder="Password" name = "password" type="password">
   </div>
   <div class="form-group">
-    <button [disabled]="!username || !password" style="padding: 10px; margin: 10px;" class="btn btn-primary" type="login" placeholder="Login" (click)="login(loginForm)">Login</button>
+    <button [disabled]="!username || !password" style="padding: 10px; margin: 10px;" class="btn btn-primary" type="login" placeholder="Login" (click)="login()">Login</button>
   </div>
 </form>
 
-<!--<div *ngIf="loggedIn">-->
-<!--  <a href="'/rooms"></a>-->
-<!--  <router-outlet></router-outlet>-->
-<!--</div>-->
+<a *ngIf="isLoggedIn" [routerLink]="['/home']"></a>
+
+<router-outlet></router-outlet>
+

@@ -1,36 +1,48 @@
-import {Component} from '@angular/core';
-import {RoomsService} from "../rooms/services/rooms.service";
-import {NgForm} from "@angular/forms";
-import {Route, Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'hinv-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[AuthService]
 })
 export class LoginComponent {
+  message: string;
+  username!:string;
+  password!:string;
+  isLoggedIn:boolean = false;
 
-  username!: string;
-  password!: string;
-  loggedIn:boolean=false;
-
-  // login$ = this.roomsService.loginAdmin(this.username,this.password).pipe(map=>
-  //
-  // );
-
-  constructor(private roomsService:RoomsService, private router:Router) {
+  constructor(private authService: AuthService, private router: Router) {
+    this.message = this.getMessage();
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  login(loginForm:NgForm) {
-    this.roomsService.loginAdmin(this.username,this.password).subscribe(data=>{
-      if(data){
-        this.loggedIn=true;
-        this.router.navigate(['/rooms']);
-        loginForm.reset();
-      }else{
-        this.loggedIn=false;
+  getMessage() {
+    return 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+  }
+
+  login() {
+    this.message = 'Trying to log in ...';
+
+    this.authService.login(this.username,this.password).subscribe((data) => {
+      this.message = this.getMessage();
+      if (data) {
+        // Usually you would use the redirect URL from the auth service.
+        // However to keep the example simple, we will always redirect to `/admin`.
+        this.isLoggedIn = true;
+        const redirectUrl = '/home';
+        // Redirect the user
+        this.router.navigate([redirectUrl]);
       }
     });
+
+    return this.isLoggedIn;
   }
 
+  logout() {
+    this.authService.logout();
+    this.message = this.getMessage();
+  }
 }

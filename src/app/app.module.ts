@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailValidator/emailvalidator.directive';
 import {RouteConfigtoken} from "./config/routeconfig.service";
+import { HomeComponent } from './home/home.component';
+import {AuthService} from "./login/auth.service";
 
 
 function initFactory(initService: InitService) {
@@ -36,7 +38,8 @@ function initFactory(initService: InitService) {
     NotfoundComponent,
     LoginComponent,
     HoverDirective,
-    EmailvalidatorDirective
+    EmailvalidatorDirective,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,9 @@ function initFactory(initService: InitService) {
       useFactory: initFactory,
       multi: true,
       deps: [InitService]
-    }
+    },
+    AuthService
+
   ],
   bootstrap: [AppComponent]
 })
